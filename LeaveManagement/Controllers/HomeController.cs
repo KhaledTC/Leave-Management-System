@@ -12,7 +12,6 @@ using LeaveManagement.ViewModels;
 
 namespace LeaveManagement.Controllers
 {
-    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly UserManager<AppUser> userManager;
