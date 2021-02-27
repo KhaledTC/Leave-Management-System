@@ -1,0 +1,31 @@
+﻿@model EditUserRoleViewModel
+
+@{
+    ViewBag.Title = "Edit Role";
+}
+
+<h1 class="text-center">Edit Role for @Model.Username</h1>
+
+<form asp-action="EditUserRole" method="post">
+    <div class="login-form">
+        <input asp-for="Id" hidden />
+        <input asp-for="Username" hidden />
+        <div class="form-group">
+            <select asp-for="Role" class="custom-select form-control">
+                <option>Employee</option>
+                <option>Manager</option>
+            </select>
+            <span asp-validation-for="Role" class="text-danger"></span>
+        </div>
+        <div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <button type="submit" class="btn btn-primary btn-block">Update Role</button>
+                </div>
+                <div class="col-sm-6">
+                    <a asp-action="ListUsers" asp-route-role="@Model.Role" class="btn btn-primary btn-block bg-danger">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

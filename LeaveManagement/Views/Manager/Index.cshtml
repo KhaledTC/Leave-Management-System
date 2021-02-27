@@ -1,0 +1,88 @@
+﻿@model ManagerViewModel;
+
+@{
+    ViewBag.Title = "Manager Homepage";
+}
+
+<h1 class="text-center">Current Employees</h1>
+
+@if (Model.Employees.Count > 0)
+{
+
+    <div>
+        <div class="row">
+            @foreach (var employee in Model.Employees)
+            {
+                <div class="card m-0 col-sm-3 p-0 text-center border-0">
+                    <div class="m-2">
+
+                        @if (employee.LeaveRequest == "unTouched")
+                        {
+                            <div class="card-header font-weight-bold text-center bg-info">
+                                <h1 class="card-title font-weight-bold">@employee.UserName</h1>
+                            </div>
+
+                            <div class="card-footer text-center font-weight-bold">
+                                <h5>Working..</h5>
+                            </div>
+                        }
+
+                        else if (employee.LeaveRequest == "Submitted")
+                        {
+                            <div class="card-header font-weight-bold text-center bg-warning">
+                                <h2 class="card-title">@employee.UserName</h2>
+                            </div>
+
+                            <form method="post">
+                                <div class="card-footer ">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <button asp-action="AcceptRequest" asp-route-Id="@employee.Id"
+                                                    class="btn btn-primary btn-block bg-success">
+                                                Accept
+                                            </button>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <button type="submit" asp-action="RejectRequest" asp-route-Id="@employee.Id"
+                                                    class="btn btn-danger btn-block"
+                                                    onclick="return confirm('Reject @employee.UserName request ?')">
+                                                Reject
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        }
+
+                        else if (employee.LeaveRequest == "Accepted")
+                        {
+                            <div class="card-header font-weight-bold text-center bg-success">
+                                <h1 class="card-title font-weight-bold">@employee.UserName</h1>
+                            </div>
+
+                            <div class="card-footer text-center font-weight-bold">
+                                <h5>Left!</h5>
+                            </div>
+                        }
+
+                        else if (employee.LeaveRequest == "Rejected")
+                        {
+                            <div class="card-header font-weight-bold text-center bg-danger">
+                                <h1 class="card-title font-weight-bold">@employee.UserName</h1>
+                            </div>
+
+                            <div class="card-footer text-center font-weight-bold">
+                                <h5>Rejected</h5>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <h1 class="text-center">No Requests Available Yet!</h1>
+}

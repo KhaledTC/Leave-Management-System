@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "User Manager";
+}
+
+<h1 class="text-center">Manage Users</h1>
+
+<div style="margin-top:5%">
+    <div class="col-sm-4 offset-4 mb-2">
+        <a asp-controller="Account" asp-action="Register" class="btn btn-primary btn-block bg-success">
+            Add New User
+        </a>
+    </div>
+    <div class="col-sm-4 offset-4 mb-2">
+        <a asp-controller="Administration" asp-action="ListUsers" asp-route-role="Employee" 
+           class="btn btn-primary btn-block bg-primary">
+            Get All Employees
+        </a>
+    </div>
+    <div class="col-sm-4 offset-4">
+        <a asp-controller="Administration" asp-action="ListUsers" asp-route-role="Manager"
+           class="btn btn-primary btn-block">
+            Get All Managers
+        </a>
+    </div>
+</div>

@@ -1,0 +1,104 @@
+﻿@model LeaveRequestViewModel
+
+@{
+    ViewBag.Title = "Employee Homepage";
+}
+
+<form asp-action="SubmitRequest" asp-controller="Employee" method="post">
+
+    <input asp-for="UserName" hidden />
+
+    @if (Model.Request == "unTouched")
+    {
+        <input asp-for="Request" id="modelMapper" hidden />
+        <div class="container col-sm-12 text-center" style="margin-top:200px">
+            <button value="unTouched" id="leaveRequest"
+                    style="height:100px;font-size:x-large" class="btn btn-primary col-sm-6 font-weight-bold"
+                    onclick="return confirm('Submit a leave request ?')">
+                Submit Leave Request
+            </button>
+        </div>
+    }
+    else if (Model.Request == "Submitted")
+    {
+        <input asp-for="Request" id="modelMapper" hidden />
+        <div class="container col-sm-12 text-center" style="margin-top:200px">
+            <button value="Submitted" id="leaveRequest"
+                    style="height:100px;font-size:x-large;background-color:#FFC333;color:black" class="btn btn-primary col-sm-6 font-weight-bold">
+                Submitted
+            </button>
+        </div>
+        <div class="container col-sm-12 text-center" style="margin-top:10px">
+            <button value="Submitted" id="CancelRequest"
+                    style="height:50px;font-size:x-large;"
+                    class="btn btn-primary col-sm-3 font-weight-bold bg-danger"
+                    onclick="return confirm('Cancel request ?')">
+                Cancel Request
+            </button>
+        </div>
+    }
+    else if (Model.Request == "Accepted")
+    {
+        <input asp-for="Request" id="modelMapper" hidden />
+        <div class="container col-sm-12 text-center" style="margin-top:200px">
+            <button value="Submitted" id="leaveRequest" disabled
+                    style="height:100px;font-size:x-large;" class="btn btn-primary col-sm-6 font-weight-bold bg-success">
+                Your leave request is accepted!
+            </button>
+        </div>
+        <div class="container col-sm-12 text-center" style="margin-top:10px">
+            <button value="Submitted" id="Reset"
+                    style="height:50px;font-size:x-large;"
+                    class="btn btn-primary col-sm-3 font-weight-bold bg-primary">
+                Reset
+            </button>
+        </div>
+    }
+    else if (Model.Request == "Rejected")
+    {
+        <input asp-for="Request" id="modelMapper" hidden />
+        <div>
+            <div class="container col-sm-12 text-center" style="margin-top:200px">
+                <button value="Submitted" id="leaveRequest" disabled
+                        style="height:100px;font-size:x-large;" class="btn btn-primary col-sm-6 font-weight-bold bg-danger">
+                    Your leave request is rejected!
+                </button>
+            </div>
+            <div>
+                <div class="container col-sm-12 text-center" style="margin-top:10px">
+                    <button value="Submitted" id="BackToWork"
+                            style="height:50px;font-size:x-large;"
+                            class="btn btn-primary col-sm-3 font-weight-bold bg-success">
+                        Get back to work
+                    </button>
+                </div>
+                <div class="container col-sm-12 text-center" style="margin-top:10px">
+                    <button value="Submitted" id="SubmitAgain"
+                            style="height:50px;font-size:x-large;"
+                            class="btn btn-primary col-sm-3 font-weight-bold bg-warning"
+                            onclick="return confirm('Submit another request ?')">
+                        Submit another request
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</form>
+
+<script>
+    $('#leaveRequest').click(function () {
+        $('#modelMapper').val("Submitted");
+    })
+    $('#CancelRequest').click(function () {
+        $('#modelMapper').val("unTouched");
+    })
+    $('#Reset').click(function () {
+        $('#modelMapper').val("unTouched");
+    })
+    $('#BackToWork').click(function () {
+        $('#modelMapper').val("unTouched");
+    })
+    $('#SubmitAgain').click(function () {
+        $('#modelMapper').val("Submitted");
+    })
+</script>

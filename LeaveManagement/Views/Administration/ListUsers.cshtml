@@ -1,0 +1,82 @@
+﻿@model ListUsersViewModel;
+
+@{
+    ViewBag.Title = "All Users";
+}
+
+<h1 class="text-center">All @Model.Role<span>s</span></h1>
+
+@if (Model.Users.Count > 0)
+{
+
+    <div class="row">
+        @foreach (var user in Model.Users) if (user.Role == Model.Role && user.UserName != "admin")
+            {
+                <div class="card m-0 col-sm-4 p-0 text-center border-0">
+                    <div class="m-2">
+                        <div class="card-header font-weight-bold">
+                            <div>
+                                Department: @user.Department
+                            </div>
+                            <div>
+                                Username: @user.UserName
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h2 class="card-title font-weight-bold">@user.FirstName @user.LastName</h2>
+                        </div>
+                        <div class="card-footer ">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <a asp-action="EditUserRole" asp-route-Id="@user.Id"
+                                       class="btn btn-primary btn-block">Edit Role</a>
+                                </div>
+                                <div class="col-sm-6">
+                                    <form method="post">
+                                        <button type="submit" asp-action="DeleteUser" asp-route-Id="@user.Id"
+                                                class="btn btn-danger btn-block"
+                                                onclick="return confirm('Delete @user.Role @user.UserName ?')">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+    </div>
+    <div style="text-align:center">
+        <a class="btn col-sm-4 btn-primary bg-danger"
+           asp-action="ManageUsers">
+            Back
+        </a>
+    </div>
+}
+else
+{
+    <div class="card text-center">
+        <div class="card-header">
+            No @Model.Role<span>s</span> created yet
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">
+                Use the button below to create new @Model.Role
+            </h5>
+            <div class="row">
+                <div class="col-sm-6">
+                    <a class="btn btn-primary btn-block" style="width:auto"
+                       asp-controller="Account" asp-action="Register">
+                        Add @Model.Role
+                    </a>
+                </div>
+                <div class="col-sm-6">
+                    <a class="btn btn-primary btn-block bg-danger" style="width:auto"
+                       asp-action="ManageUsers">
+                        Cancel
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
