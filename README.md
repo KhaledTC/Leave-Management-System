@@ -5,6 +5,8 @@
     - There are two roles for users, Employee and Manager.
     - Create employees and managers and try using the app, waiting for your feedback!
 3.	Feature: Every department have employees and managers, for employees, they can only submit a leave request to the managers of their department to approve or reject, and for the managers, they can only see and manage the employees in their department.
-4.	Requirements: Latest version of visual studio.
-5.	Technologies used: ASP.Net Core, Razor, SQL, MVC Design pattern, HTML, Bootstrap, jQuery.
+4.	Requirements:
+    - Latest version of [Visual Studio](https://visualstudio.microsoft.com/).
+    - The lastest version of [.Net SDK](https://dotnet.microsoft.com/download).
+6.	Technologies used: ASP.Net Core, Razor, SQL, MVC Design pattern, HTML, Bootstrap, jQuery.
 
