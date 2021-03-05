@@ -36,6 +36,7 @@ namespace LeaveManagement.Models
                     FirstName = "",
                     LastName = "",
                     Role = "",
+                    PasswordHash = "AQAAAAEAACcQAAAAEDnzLtiKg8b97znMazhUEC7GvmgVHSew3FvekhFUYt2ZHmoF9qjhr6i6Z41cTp3vJQ=="
                 });
 
             modelBuilder.Entity<IdentityRole>().HasData(
