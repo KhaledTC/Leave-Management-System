@@ -67,9 +67,6 @@ namespace LeaveManagement.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login()
         {
-            var user = await userManager.FindByNameAsync("admin");
-            await userManager.AddPasswordAsync(user, "admin");
-
             if (User.Identity.IsAuthenticated)
                 return RedirectToAction("index", "home");
             return View();
