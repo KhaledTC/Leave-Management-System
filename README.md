@@ -14,5 +14,5 @@
 4.	Requirements:
     - Latest version of [Visual Studio](https://visualstudio.microsoft.com/).
     - The lastest version of [.Net SDK](https://dotnet.microsoft.com/download).
-6.	Technologies used: ASP.Net Core, signalR, Razor, SQL, MVC Design pattern, HTML, Bootstrap, jQuery.
+6.	Technologies used: ASP.Net Core, signalR, AJAX, Razor, SQL, MVC Design pattern, HTML, Bootstrap, jQuery.
 
