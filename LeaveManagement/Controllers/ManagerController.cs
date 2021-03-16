@@ -24,31 +24,32 @@ namespace LeaveManagement.Controllers
         public async Task<IActionResult> Index()
         {
             var manager = await userManager.GetUserAsync(User);
-
-            ManagerViewModel model = new ManagerViewModel();
-
             var users = userManager.Users.ToList();
-            foreach (var user in users)
-                if (user.Department == manager.Department && user.Role != "Manager")
-                    model.Employees.Add(user);
+
+            ManagerViewModel model = new ManagerViewModel()
+            {
+                Employees = (from user in users where user.Department == manager.Department && user.Role != "Manager" select user).ToList(),
+                Department = manager.Department
+            };
+
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> AcceptRequest(string id)
+        public async Task<IActionResult> AcceptRequest(string username)
         {
-            var user = await userManager.FindByIdAsync(id);
-            user.LeaveRequest = "Accepted";
-            await userManager.UpdateAsync(user);
+            var employee = await userManager.FindByNameAsync(username);
+            employee.LeaveRequest = "Accepted";
+            await userManager.UpdateAsync(employee);
             return RedirectToAction("index");
         }
 
         [HttpPost]
-        public async Task<IActionResult> RejectRequest(string id)
+        public async Task<IActionResult> RejectRequest(string username)
         {
-            var user = await userManager.FindByIdAsync(id);
-            user.LeaveRequest = "Rejected";
-            await userManager.UpdateAsync(user);
+            var employee = await userManager.FindByNameAsync(username);
+            employee.LeaveRequest = "Rejected";
+            await userManager.UpdateAsync(employee);
             return RedirectToAction("index");
         }
 

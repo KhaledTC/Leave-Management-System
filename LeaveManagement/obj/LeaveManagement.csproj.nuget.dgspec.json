@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Naruto\\source\\repos\\LeaveManagement\\LeaveManagement\\LeaveManagement.csproj": {}
+    "C:\\Users\\Naruto\\Desktop\\Leave-Management-System\\LeaveManagement\\LeaveManagement.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Naruto\\source\\repos\\LeaveManagement\\LeaveManagement\\LeaveManagement.csproj": {
+    "C:\\Users\\Naruto\\Desktop\\Leave-Management-System\\LeaveManagement\\LeaveManagement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Naruto\\source\\repos\\LeaveManagement\\LeaveManagement\\LeaveManagement.csproj",
+        "projectUniqueName": "C:\\Users\\Naruto\\Desktop\\Leave-Management-System\\LeaveManagement\\LeaveManagement.csproj",
         "projectName": "LeaveManagement",
-        "projectPath": "C:\\Users\\Naruto\\source\\repos\\LeaveManagement\\LeaveManagement\\LeaveManagement.csproj",
+        "projectPath": "C:\\Users\\Naruto\\Desktop\\Leave-Management-System\\LeaveManagement\\LeaveManagement.csproj",
         "packagesPath": "C:\\Users\\Naruto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Naruto\\source\\repos\\LeaveManagement\\LeaveManagement\\obj\\",
+        "outputPath": "C:\\Users\\Naruto\\Desktop\\Leave-Management-System\\LeaveManagement\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -80,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

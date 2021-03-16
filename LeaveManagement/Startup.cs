@@ -1,11 +1,15 @@
+using LeaveManagement.Hubs;
 using LeaveManagement.Models;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -30,15 +34,10 @@ namespace LeaveManagement
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(config =>
-            {
-                config.EnableEndpointRouting = false;
-                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-                config.Filters.Add(new AuthorizeFilter(policy));
-            });
-
             services.AddIdentity<AppUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>();
+
+            services.AddMvc(config => config.EnableEndpointRouting = false);
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -50,24 +49,34 @@ namespace LeaveManagement
             });
 
             services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(config.GetConnectionString("AppDBConnection")));
-
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public async void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
             app.UseStaticFiles();
 
             app.UseAuthentication();
+            app.UseRouting();
+            app.UseAuthorization();
 
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute("default", "{controller=Account}/{action=Login}/{id?}");
+                endpoints.MapControllerRoute("default", "{controller=account}/{action=login}/{id?}");
+                endpoints.MapHub<LeaveRequestsHub>("LeaveRequestsHub");
             });
+
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute("default", "{controller=Account}/{action=Login}/{id?}");
+            //});
+
         }
     }
 }

@@ -1,104 +1,192 @@
-﻿@model LeaveRequestViewModel
+﻿@model EmployeeViewModel
 
 @{
     ViewBag.Title = "Employee Homepage";
 }
 
-<form asp-action="SubmitRequest" asp-controller="Employee" method="post">
+<input asp-for="UserName" hidden />
+<input asp-for="Department" hidden />
+<input asp-for="Request" id="modelMapper" hidden />
 
-    <input asp-for="UserName" hidden />
-
-    @if (Model.Request == "unTouched")
-    {
-        <input asp-for="Request" id="modelMapper" hidden />
+@if (Model.Request == "unTouched")
+{
+    <div class="container col-sm-12 text-center" style="margin-top:200px">
+        <button value="unTouched" id="leaveRequest" style="height:100px;font-size:x-large"
+                class="btn btn-primary col-sm-6 font-weight-bold">
+            Submit Leave Request
+        </button>
+    </div>
+}
+else if (Model.Request == "Submitted")
+{
+    <div class="container col-sm-12 text-center" style="margin-top:200px">
+        <button value="Submitted" id="leaveRequest"
+                style="height:100px;font-size:x-large;background-color:#FFC333;color:black"
+                class="btn btn-primary col-sm-6 font-weight-bold" disabled>
+            Submitted
+        </button>
+    </div>
+    <div class="container col-sm-12 text-center" style="margin-top:10px">
+        <button value="Submitted" id="CancelRequest" style="height:50px;font-size:x-large;"
+                class="btn btn-primary col-sm-3 font-weight-bold bg-danger">
+            Cancel Request
+        </button>
+    </div>
+}
+else if (Model.Request == "Accepted")
+{
+    <div class="container col-sm-12 text-center" style="margin-top:200px">
+        <button value="Submitted" id="leaveRequest" disabled style="height:100px;font-size:x-large;"
+                class="btn btn-primary col-sm-6 font-weight-bold bg-success">
+            Your leave request is accepted!
+        </button>
+    </div>
+    <div class="container col-sm-12 text-center" style="margin-top:10px">
+        <button value="Submitted" id="Reset" style="height:50px;font-size:x-large;"
+                class="btn btn-primary col-sm-3 font-weight-bold bg-primary">
+            Reset
+        </button>
+    </div>
+}
+else if (Model.Request == "Rejected")
+{
+    <div>
         <div class="container col-sm-12 text-center" style="margin-top:200px">
-            <button value="unTouched" id="leaveRequest"
-                    style="height:100px;font-size:x-large" class="btn btn-primary col-sm-6 font-weight-bold"
-                    onclick="return confirm('Submit a leave request ?')">
-                Submit Leave Request
+            <button value="Submitted" id="leaveRequest" disabled style="height:100px;font-size:x-large;"
+                    class="btn btn-primary col-sm-6 font-weight-bold bg-danger">
+                Your leave request is rejected!
             </button>
         </div>
-    }
-    else if (Model.Request == "Submitted")
-    {
-        <input asp-for="Request" id="modelMapper" hidden />
-        <div class="container col-sm-12 text-center" style="margin-top:200px">
-            <button value="Submitted" id="leaveRequest"
-                    style="height:100px;font-size:x-large;background-color:#FFC333;color:black" class="btn btn-primary col-sm-6 font-weight-bold">
-                Submitted
-            </button>
-        </div>
-        <div class="container col-sm-12 text-center" style="margin-top:10px">
-            <button value="Submitted" id="CancelRequest"
-                    style="height:50px;font-size:x-large;"
-                    class="btn btn-primary col-sm-3 font-weight-bold bg-danger"
-                    onclick="return confirm('Cancel request ?')">
-                Cancel Request
-            </button>
-        </div>
-    }
-    else if (Model.Request == "Accepted")
-    {
-        <input asp-for="Request" id="modelMapper" hidden />
-        <div class="container col-sm-12 text-center" style="margin-top:200px">
-            <button value="Submitted" id="leaveRequest" disabled
-                    style="height:100px;font-size:x-large;" class="btn btn-primary col-sm-6 font-weight-bold bg-success">
-                Your leave request is accepted!
-            </button>
-        </div>
-        <div class="container col-sm-12 text-center" style="margin-top:10px">
-            <button value="Submitted" id="Reset"
-                    style="height:50px;font-size:x-large;"
-                    class="btn btn-primary col-sm-3 font-weight-bold bg-primary">
-                Reset
-            </button>
-        </div>
-    }
-    else if (Model.Request == "Rejected")
-    {
-        <input asp-for="Request" id="modelMapper" hidden />
         <div>
-            <div class="container col-sm-12 text-center" style="margin-top:200px">
-                <button value="Submitted" id="leaveRequest" disabled
-                        style="height:100px;font-size:x-large;" class="btn btn-primary col-sm-6 font-weight-bold bg-danger">
-                    Your leave request is rejected!
+            <div class="container col-sm-12 text-center" style="margin-top:10px">
+                <button value="Submitted" id="BackToWork" style="height:50px;font-size:x-large;"
+                        class="btn btn-primary col-sm-5 font-weight-bold bg-success">
+                    Get back to work
                 </button>
             </div>
-            <div>
-                <div class="container col-sm-12 text-center" style="margin-top:10px">
-                    <button value="Submitted" id="BackToWork"
-                            style="height:50px;font-size:x-large;"
-                            class="btn btn-primary col-sm-3 font-weight-bold bg-success">
-                        Get back to work
-                    </button>
-                </div>
-                <div class="container col-sm-12 text-center" style="margin-top:10px">
-                    <button value="Submitted" id="SubmitAgain"
-                            style="height:50px;font-size:x-large;"
-                            class="btn btn-primary col-sm-3 font-weight-bold bg-warning"
-                            onclick="return confirm('Submit another request ?')">
-                        Submit another request
-                    </button>
-                </div>
+            <div class="container col-sm-12 text-center" style="margin-top:10px">
+                <button value="Submitted" id="SubmitAgain" style="height:50px;font-size:x-large;"
+                        class="btn btn-primary col-sm-5 font-weight-bold bg-warning"
+                        onclick="return confirm('Submit another request ?')">
+                    Submit another request
+                </button>
             </div>
         </div>
-    }
-</form>
+    </div>
+}
 
 <script>
+
+    let connection = new signalR.HubConnectionBuilder().withUrl("/LeaveRequestsHub").build();
+
+    connection.start().then(function () {
+        console.log("connection started");
+    }).catch(function (err) {
+        return console.error(err.toString());
+    });
+
+    connection.on("RespondToLeaveRequest", function (employeeName) {
+            if (employeeName === "@Model.UserName")
+                location.reload();
+        });
+
     $('#leaveRequest').click(function () {
+        if (!confirm('Submit a leave request ?'))
+            return false;
         $('#modelMapper').val("Submitted");
+        $.ajax({
+            type: "post",
+            url: "/employee/submitRequest",
+            data: {
+                "model": {
+                    UserName: "@Model.UserName",
+                    Request: "Submitted"
+                }
+            },
+            success: function (res) {
+                connection.invoke("SendLeaveRequest", "@Model.Department", "@Model.UserName").then(function () {
+                    location.reload();
+                });
+            }
+        });
     })
+
     $('#CancelRequest').click(function () {
+        if (!confirm('Cancel request ?'))
+            return false;
         $('#modelMapper').val("unTouched");
+        $.ajax({
+            type: "post",
+            url: "/employee/submitRequest",
+            data: {
+                "model": {
+                    UserName: "@Model.UserName",
+                    Request: "unTouched"
+                }
+            },
+            success: function (res) {
+                connection.invoke("SendLeaveRequest", "@Model.Department", "@Model.UserName").then(function () {
+                    location.reload();
+                });
+            }
+        });
     })
+
     $('#Reset').click(function () {
         $('#modelMapper').val("unTouched");
+        $.ajax({
+            type: "post",
+            url: "/employee/submitRequest",
+            data: {
+                "model": {
+                    UserName: "@Model.UserName",
+                    Request: "unTouched"
+                }
+            },
+            success: function (res) {
+                connection.invoke("SendLeaveRequest", "@Model.Department", "@Model.UserName").then(function () {
+                    location.reload();
+                });
+            }
+        });
     })
+
     $('#BackToWork').click(function () {
         $('#modelMapper').val("unTouched");
+        $.ajax({
+            type: "post",
+            url: "/employee/submitRequest",
+            data: {
+                "model": {
+                    UserName: "@Model.UserName",
+                    Request: "unTouched"
+                }
+            },
+            success: function (res) {
+                connection.invoke("SendLeaveRequest", "@Model.Department", "@Model.UserName").then(function () {
+                    location.reload();
+                });
+            }
+        });
     })
+
     $('#SubmitAgain').click(function () {
         $('#modelMapper').val("Submitted");
+        $.ajax({
+            type: "post",
+            url: "/employee/submitRequest",
+            data: {
+                "model": {
+                    UserName: "@Model.UserName",
+                    Request: "Submitted"
+                }
+            },
+            success: function (res) {
+                connection.invoke("SendLeaveRequest", "@Model.Department", "@Model.UserName").then(function () {
+                    location.reload();
+                });
+            }
+        });
     })
+
 </script>

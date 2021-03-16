@@ -163,15 +163,15 @@ namespace LeaveManagement.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "admin", "e667d6dd-a53d-47a1-ad85-953a990cfd06", "admin", "Admin" },
-                    { "Employee", "8f20fc6f-255c-4738-81e5-c2fa0ced362f", "Employee", "Employee" },
-                    { "Manager", "32dfb4b9-f3db-4304-8896-9f5f6624da9f", "Manager", "Manager" }
+                    { "admin", "7cc55e8b-2b86-4d20-b678-c87fa92932ad", "admin", "Admin" },
+                    { "Employee", "5ac98409-c30d-45d8-9d8a-9988b52a0e5d", "Employee", "Employee" },
+                    { "Manager", "6072e7a9-0610-400a-8b4b-670cfe03d261", "Manager", "Manager" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Department", "Email", "EmailConfirmed", "FirstName", "Gender", "LastName", "LeaveRequest", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Role", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "admin", 0, "e7a8eef2-9807-4bc2-8470-a8ab033f3cf0", "admin", null, false, "", 0, "", "unTouched", false, null, null, "Admin", null, null, false, "", "d0ee1aba-bbdb-4d3d-b443-b7652a7608c1", false, "admin" });
+                values: new object[] { "admin", 0, "fae79109-20f8-4851-9ea4-9f850bcb5784", "admin", null, false, "", 0, "", "unTouched", false, null, null, "Admin", "AQAAAAEAACcQAAAAEDnzLtiKg8b97znMazhUEC7GvmgVHSew3FvekhFUYt2ZHmoF9qjhr6i6Z41cTp3vJQ==", null, false, "", "acafadc5-39d9-4683-b583-4c672e2cc7f3", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",

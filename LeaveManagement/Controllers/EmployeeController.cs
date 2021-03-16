@@ -23,22 +23,23 @@ namespace LeaveManagement.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var user = await userManager.GetUserAsync(User);
+            var employee = await userManager.GetUserAsync(User);
 
-            LeaveRequestViewModel model = new LeaveRequestViewModel()
+            EmployeeViewModel model = new EmployeeViewModel()
             {
-                UserName = user.UserName,
-                Request = user.LeaveRequest
+                UserName = employee.UserName,
+                Request = employee.LeaveRequest,
+                Department = employee.Department
             };
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> SubmitRequest(LeaveRequestViewModel model)
+        public async Task<IActionResult> SubmitRequest(EmployeeViewModel model)
         {
-            var user = await userManager.FindByNameAsync(model.UserName);
-            user.LeaveRequest = model.Request;
-            await userManager.UpdateAsync(user);
+            var employee = await userManager.FindByNameAsync(model.UserName);
+            employee.LeaveRequest = model.Request;
+            await userManager.UpdateAsync(employee);
             return RedirectToAction("Index");
         }
     }

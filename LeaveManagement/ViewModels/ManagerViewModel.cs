@@ -13,5 +13,6 @@ namespace LeaveManagement.ViewModels
             Employees = new List<AppUser>();
         }
         public List<AppUser> Employees { get; set; }
+        public string Department { get; set; }
     }
 }

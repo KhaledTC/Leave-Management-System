@@ -110,7 +110,7 @@ namespace LeaveManagement.Migrations
                         {
                             Id = "admin",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e7a8eef2-9807-4bc2-8470-a8ab033f3cf0",
+                            ConcurrencyStamp = "fae79109-20f8-4851-9ea4-9f850bcb5784",
                             Department = "admin",
                             EmailConfirmed = false,
                             FirstName = "",
@@ -119,9 +119,10 @@ namespace LeaveManagement.Migrations
                             LeaveRequest = "unTouched",
                             LockoutEnabled = false,
                             NormalizedUserName = "Admin",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDnzLtiKg8b97znMazhUEC7GvmgVHSew3FvekhFUYt2ZHmoF9qjhr6i6Z41cTp3vJQ==",
                             PhoneNumberConfirmed = false,
                             Role = "",
-                            SecurityStamp = "d0ee1aba-bbdb-4d3d-b443-b7652a7608c1",
+                            SecurityStamp = "acafadc5-39d9-4683-b583-4c672e2cc7f3",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -157,21 +158,21 @@ namespace LeaveManagement.Migrations
                         new
                         {
                             Id = "admin",
-                            ConcurrencyStamp = "e667d6dd-a53d-47a1-ad85-953a990cfd06",
+                            ConcurrencyStamp = "7cc55e8b-2b86-4d20-b678-c87fa92932ad",
                             Name = "admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
                             Id = "Employee",
-                            ConcurrencyStamp = "8f20fc6f-255c-4738-81e5-c2fa0ced362f",
+                            ConcurrencyStamp = "5ac98409-c30d-45d8-9d8a-9988b52a0e5d",
                             Name = "Employee",
                             NormalizedName = "Employee"
                         },
                         new
                         {
                             Id = "Manager",
-                            ConcurrencyStamp = "32dfb4b9-f3db-4304-8896-9f5f6624da9f",
+                            ConcurrencyStamp = "6072e7a9-0610-400a-8b4b-670cfe03d261",
                             Name = "Manager",
                             NormalizedName = "Manager"
                         });

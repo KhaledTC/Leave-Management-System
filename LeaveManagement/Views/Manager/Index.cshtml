@@ -19,7 +19,7 @@
                         @if (employee.LeaveRequest == "unTouched")
                         {
                             <div class="card-header font-weight-bold text-center bg-info">
-                                <h1 class="card-title font-weight-bold">@employee.UserName</h1>
+                                <h1 class="card-title font-weight-bold" id="@employee.UserName">@employee.UserName</h1>
                             </div>
 
                             <div class="card-footer text-center font-weight-bold">
@@ -33,25 +33,20 @@
                                 <h2 class="card-title">@employee.UserName</h2>
                             </div>
 
-                            <form method="post">
-                                <div class="card-footer ">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <button asp-action="AcceptRequest" asp-route-Id="@employee.Id"
-                                                    class="btn btn-primary btn-block bg-success">
-                                                Accept
-                                            </button>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <button type="submit" asp-action="RejectRequest" asp-route-Id="@employee.Id"
-                                                    class="btn btn-danger btn-block"
-                                                    onclick="return confirm('Reject @employee.UserName request ?')">
-                                                Reject
-                                            </button>
-                                        </div>
+                            <div class="card-footer ">
+                                <div class="row" id="@employee.UserName">
+                                    <div class="col-sm-6">
+                                        <button class="btn btn-primary btn-block bg-success" id="AcceptRequest">
+                                            Accept
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <button class="btn btn-danger btn-block" id="RejectRequest">
+                                            Reject
+                                        </button>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         }
 
                         else if (employee.LeaveRequest == "Accepted")
@@ -86,3 +81,52 @@ else
 {
     <h1 class="text-center">No Requests Available Yet!</h1>
 }
+
+<script>
+
+    let connection = new signalR.HubConnectionBuilder().withUrl("/LeaveRequestsHub").build();
+    let method = "@Model.Department" + "managers";
+
+    connection.start().then(function () {
+        console.log("connection started");
+    }).catch(function (err) {
+        return console.error(err.toString());
+    });
+
+    connection.on(method, function (department, employeeName) {
+        location.reload();
+    });
+
+    $('#AcceptRequest').click(function () {
+        $.ajax({
+            type: "post",
+            url: "/manager/AcceptRequest",
+            data: {
+                "username": $(this).parent().parent().attr('id')
+            },
+            success: function (res) {
+                connection.invoke("RespondToLeaveRequest", $('#AcceptRequest').parent().parent().attr('id')).then(function () {
+                    location.reload();
+                });
+            }
+        });
+    })
+
+    $('#RejectRequest').click(function () {
+        if (!confirm('Reject request ?'))
+            return false;
+        $.ajax({
+            type: "post",
+            url: "/manager/RejectRequest",
+            data: {
+                "username": $(this).parent().parent().attr('id')
+            },
+            success: function (res) {
+                connection.invoke("RespondToLeaveRequest", $('#RejectRequest').parent().parent().attr('id')).then(function () {
+                    location.reload();
+                });
+            }
+        });
+    })
+
+</script>
