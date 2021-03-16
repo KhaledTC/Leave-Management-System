@@ -1,5 +1,11 @@
 1.	About: Simple management system to manage employees leaving process.
 2.	How to use: 
+    - for the first time you need to add a migration to create the AppDB database, you can do that by:
+        1. in visual studio click view -> other windows -> package manager console
+        2. then enter those two commands 
+            - add-migration hello
+            - update-database
+        3. and you are done!
     - The system starts with admin user (Username: admin, Password: admin).
     - With admin, you can add/delete, or even change roles of users.
     - There are two roles for users, Employee and Manager.
@@ -8,5 +14,5 @@
 4.	Requirements:
     - Latest version of [Visual Studio](https://visualstudio.microsoft.com/).
     - The lastest version of [.Net SDK](https://dotnet.microsoft.com/download).
-6.	Technologies used: ASP.Net Core, Razor, SQL, MVC Design pattern, HTML, Bootstrap, jQuery.
+6.	Technologies used: ASP.Net Core, signalR, Razor, SQL, MVC Design pattern, HTML, Bootstrap, jQuery.
 
