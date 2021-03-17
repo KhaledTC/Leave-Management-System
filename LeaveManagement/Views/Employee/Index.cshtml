@@ -103,10 +103,9 @@ else if (Model.Request == "Rejected")
                     Request: "Submitted"
                 }
             },
-            success: function (res) {
-                connection.invoke("SendLeaveRequest", "@Model.Department", "@Model.UserName").then(function () {
-                    location.reload();
-                });
+            success: async function (res) {
+                await connection.invoke("SendLeaveRequest", "@Model.Department", "@Model.UserName");
+                location.reload();
             }
         });
     })
@@ -124,10 +123,9 @@ else if (Model.Request == "Rejected")
                     Request: "unTouched"
                 }
             },
-            success: function (res) {
-                connection.invoke("SendLeaveRequest", "@Model.Department", "@Model.UserName").then(function () {
-                    location.reload();
-                });
+            success: async function (res) {
+                await connection.invoke("SendLeaveRequest", "@Model.Department", "@Model.UserName");
+                location.reload();
             }
         });
     })
@@ -143,10 +141,9 @@ else if (Model.Request == "Rejected")
                     Request: "unTouched"
                 }
             },
-            success: function (res) {
-                connection.invoke("SendLeaveRequest", "@Model.Department", "@Model.UserName").then(function () {
-                    location.reload();
-                });
+            success: async function (res) {
+                await connection.invoke("SendLeaveRequest", "@Model.Department", "@Model.UserName");
+                location.reload();
             }
         });
     })
@@ -162,10 +159,9 @@ else if (Model.Request == "Rejected")
                     Request: "unTouched"
                 }
             },
-            success: function (res) {
-                connection.invoke("SendLeaveRequest", "@Model.Department", "@Model.UserName").then(function () {
-                    location.reload();
-                });
+            success: async function (res) {
+                await connection.invoke("SendLeaveRequest", "@Model.Department", "@Model.UserName");
+                location.reload();
             }
         });
     })
@@ -181,10 +177,9 @@ else if (Model.Request == "Rejected")
                     Request: "Submitted"
                 }
             },
-            success: function (res) {
-                connection.invoke("SendLeaveRequest", "@Model.Department", "@Model.UserName").then(function () {
-                    location.reload();
-                });
+            success: async function (res) {
+                await connection.invoke("SendLeaveRequest", "@Model.Department", "@Model.UserName");
+                location.reload();
             }
         });
     })
