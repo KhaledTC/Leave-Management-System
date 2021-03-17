@@ -104,10 +104,9 @@ else
             data: {
                 "username": $(this).parent().parent().attr('id')
             },
-            success: function (res) {
-                connection.invoke("RespondToLeaveRequest", $('#AcceptRequest').parent().parent().attr('id')).then(function () {
-                    location.reload();
-                });
+            success: async function (res) {
+                await connection.invoke("RespondToLeaveRequest", $('#AcceptRequest').parent().parent().attr('id'));
+                location.reload();
             }
         });
     })
@@ -121,10 +120,9 @@ else
             data: {
                 "username": $(this).parent().parent().attr('id')
             },
-            success: function (res) {
-                connection.invoke("RespondToLeaveRequest", $('#RejectRequest').parent().parent().attr('id')).then(function () {
-                    location.reload();
-                });
+            success: async function (res) {
+                await connection.invoke("RespondToLeaveRequest", $('#RejectRequest').parent().parent().attr('id'));
+                location.reload();
             }
         });
     })
